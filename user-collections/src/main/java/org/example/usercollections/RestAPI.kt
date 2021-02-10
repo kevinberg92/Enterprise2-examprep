@@ -32,6 +32,7 @@ class RestAPI(
     //method + mapping
     @GetMapping(path=["/{userId}"])
     fun getUserInfo(
+            //always patchvariable after function name
             @PathVariable("userId") userId: String
     ) : ResponseEntity<UserDto> {
 

@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional
 import javax.persistence.LockModeType
 
 @Repository
-interface UserRepository : CrudRepository<User, String> {
+interface UserRepository : CrudRepository<User, String>{
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("select u from User u where u.userId = :id")

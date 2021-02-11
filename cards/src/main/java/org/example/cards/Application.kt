@@ -10,7 +10,7 @@ import springfox.documentation.spi.DocumentationType
 import springfox.documentation.spring.web.plugins.Docket
 
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = ["org.tsdes.advanced"])
 class Application {
 
     @Bean
@@ -29,9 +29,9 @@ class Application {
                 .version("1.0")
                 .build()
     }
+}
 
 
-    fun main(args: Array<String>) {
-        SpringApplication.run(Application::class.java, *args)
-    }
+fun main(args: Array<String>) {
+    SpringApplication.run(Application::class.java, *args)
 }

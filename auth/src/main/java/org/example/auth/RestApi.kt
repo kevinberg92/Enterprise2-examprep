@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import java.security.Principal
 
-
 @RestController
 @RequestMapping("/api/auth")
 class RestApi(
@@ -31,7 +30,7 @@ class RestApi(
 
     @RequestMapping("/user")
     fun user(user: Principal): ResponseEntity<Map<String, Any>> {
-        val map = mutableMapOf<String, Any>()
+        val map = mutableMapOf<String,Any>()
         map["name"] = user.name
         map["roles"] = AuthorityUtils.authorityListToSet((user as Authentication).authorities)
         return ResponseEntity.ok(map)
@@ -42,8 +41,8 @@ class RestApi(
     fun signUp(@RequestBody dto: AuthDto)
             : ResponseEntity<Void> {
 
-        val userId: String = dto.userId!!
-        val password: String = dto.password!!
+        val userId : String = dto.userId!!
+        val password : String = dto.password!!
 
         val registered = service.createUser(userId, password, setOf("USER"))
 
@@ -70,12 +69,12 @@ class RestApi(
     fun login(@RequestBody dto: AuthDto)
             : ResponseEntity<Void> {
 
-        val userId: String = dto.userId!!
-        val password: String = dto.password!!
+        val userId : String = dto.userId!!
+        val password : String = dto.password!!
 
-        val userDetails = try {
+        val userDetails = try{
             userDetailsService.loadUserByUsername(userId)
-        } catch (e: UsernameNotFoundException) {
+        } catch (e: UsernameNotFoundException){
             return ResponseEntity.status(400).build()
         }
 
@@ -90,4 +89,5 @@ class RestApi(
 
         return ResponseEntity.status(400).build()
     }
+
 }

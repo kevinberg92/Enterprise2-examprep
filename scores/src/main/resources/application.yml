@@ -18,7 +18,6 @@ spring:
     database: "postgresql"
     hibernate:
       ddl-auto: create-drop
-
   cloud:
     consul:
       host: discovery

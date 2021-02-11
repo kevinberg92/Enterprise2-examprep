@@ -15,7 +15,7 @@ class MOMListener(
     }
 
 
-    @RabbitListener(queues = ["#{queue.name}"])
+    @RabbitListener(queues = ["testing"])
     fun receiveFromAMQP(userId: String) {
 
         val ok = userService.registerNewUser(userId)

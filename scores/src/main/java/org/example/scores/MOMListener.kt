@@ -16,6 +16,7 @@ class MOMListener(
 
     @RabbitListener(queues = ["#{queue.name}"])
     fun receiveFromAMQP(userId: String) {
+
         val ok = statsService.registerNewUser(userId)
         if(ok){
             log.info("Registered new user via MOM: $userId")

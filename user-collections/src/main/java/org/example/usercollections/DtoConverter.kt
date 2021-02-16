@@ -5,6 +5,8 @@ import org.example.usercollections.db.User
 import org.example.usercollections.dto.CardCopyDto
 import org.example.usercollections.dto.UserDto
 
+//in every module we create @Entity we need to convert them from JPA to DTO.
+//need to transform every field from the DTO class(es).
 class DtoConverter {
     object DtoConverter {
 

@@ -1,14 +1,19 @@
 package org.example.cards.dto
 
-import org.example.cards.dto.CardDto
+import io.swagger.annotations.ApiModelProperty
 
-class CollectionDto (
 
-    var cards : MutableList<CardDto> = mutableListOf(),
+class CollectionDto(
 
-    var prices : MutableMap<Rarity, Int> = mutableMapOf(),
+        @get:ApiModelProperty("Info on all the cards in the game")
+        var cards : MutableList<CardDto> = mutableListOf(),
 
-    var millValues : MutableMap<Rarity, Int> = mutableMapOf(),
+        @get:ApiModelProperty("Cost of each card, based on its rarity")
+        var prices: MutableMap<Rarity, Int> = mutableMapOf(),
 
-    var rarityProbabilities : MutableMap<Rarity, Double> = mutableMapOf()
+        @get:ApiModelProperty("Milling/sell value of each card, based on its rarity")
+        var millValues: MutableMap<Rarity, Int> = mutableMapOf(),
+
+        @get:ApiModelProperty("Probability of getting a card of a specific rarity when opening card packs")
+        var rarityProbabilities: MutableMap<Rarity, Double> = mutableMapOf()
 )

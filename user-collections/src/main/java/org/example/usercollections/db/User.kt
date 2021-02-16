@@ -18,6 +18,7 @@ class User (
     @get:Min(0)
     var cardPacks: Int = 0,
 
+    //one user can have many ownedCards
     @get:OneToMany(mappedBy = "user", cascade = [(CascadeType.ALL)])
     var ownedCards: MutableList<CardCopy> = mutableListOf()
 )

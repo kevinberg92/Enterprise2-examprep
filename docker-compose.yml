@@ -4,7 +4,7 @@ services:
 
   api-gateway:
     build:
-      context: ./api-gateway
+      context: ../part-09/api-gateway
       dockerfile: Dockerfile
     ports:
       - "80:8080"
@@ -12,15 +12,20 @@ services:
       - discovery
 
   rabbitmq:
-    image: "rabbitmq:3"
-
-  redis:
-    image: "redis:latest"
+    image:  "rabbitmq:3"
 
   discovery:
     image: "consul:1.8"
     environment:
       - CONSUL_LOCAL_CONFIG={"log_level":"info"}
+
+  redis:
+    image: "redis:latest"
+
+  postgres-auth:
+    image: "postgres:10"
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
 
   postgres-user-collections:
     image: "postgres:10"
@@ -32,14 +37,19 @@ services:
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
 
-  postgres-auth:
-    image: "postgres:10"
-    environment:
-      - POSTGRES_HOST_AUTH_METHOD=trust
+  auth:
+    build:
+      context: ./auth
+      dockerfile: Dockerfile
+    depends_on:
+      - api-gateway
+      - redis
+      - postgres-auth
+      - rabbitmq
 
   cards_0:
     build:
-      context: ./cards
+      context: ../part-08/cards
       dockerfile: Dockerfile
     depends_on:
       - api-gateway
@@ -47,7 +57,7 @@ services:
 
   cards_1:
     build:
-      context: ./cards
+      context: ../part-08/cards
       dockerfile: Dockerfile
     depends_on:
       - api-gateway
@@ -73,17 +83,6 @@ services:
       - discovery
       - postgres-scores
       - rabbitmq
-
-  auth:
-    build:
-      context: ./auth
-      dockerfile: Dockerfile
-    depends_on:
-      - api-gateway
-      - redis
-      - postgres-auth
-      - rabbitmq
-
 
 
 

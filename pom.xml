@@ -98,30 +98,6 @@
                 <version>${version.springfox}</version>
             </dependency>
 
-
-            <!--  GraphQL -->
-            <dependency>
-                <groupId>com.graphql-java</groupId>
-                <artifactId>graphql-spring-boot-starter</artifactId>
-                <version>${version.graphql-spring}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.graphql-java</groupId>
-                <artifactId>graphiql-spring-boot-starter</artifactId>
-                <version>${version.graphql-spring}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.graphql-java</groupId>
-                <artifactId>voyager-spring-boot-starter</artifactId>
-                <version>${version.graphql-spring}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.graphql-java</groupId>
-                <artifactId>graphql-java-tools</artifactId>
-                <version>${version.graphql-java-tools}</version>
-            </dependency>
-
-
             <!-- Misc -->
             <dependency>
                 <groupId>com.netflix.hystrix</groupId>
@@ -148,6 +124,9 @@
 
         </dependencies>
     </dependencyManagement>
+
+    <profiles>
+    </profiles>
 
 
     <build>
@@ -192,16 +171,7 @@
                     <artifactId>kotlin-maven-plugin</artifactId>
                     <groupId>org.jetbrains.kotlin</groupId>
                     <version>${version.kotlin}</version>
-                    <!--
-                        Kotlin has a major "limitation" that all classes are final by default.
-                        Someone call it a "feature", others (like me) call it a "design flaw".
-                        See more at: https://discuss.kotlinlang.org/t/classes-final-by-default/166/77
 
-                        Why is it a problem? for example, it does not play well with all major frameworks
-                        out there like JPA, Spring, mocking, etc, as they require to create proxy
-                        classes that extend the classes you write.
-                        So here we have to use special plugins to bypass this Kotlin "feature"...
-                    -->
                     <configuration>
                         <jvmTarget>11</jvmTarget>
                         <compilerPlugins>
@@ -283,7 +253,7 @@
                     <!-- Need to create self-executable uber/fat jars -->
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>2.4.0}</version>
+                    <version>${version.springboot}</version>
                     <executions>
                         <execution>
                             <goals>
@@ -308,6 +278,7 @@
             </plugins>
 
         </pluginManagement>
+
     </build>
 
 </project>

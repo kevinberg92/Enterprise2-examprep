@@ -10,7 +10,6 @@ import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.userdetails.UserDetails
 
-
 @Configuration
 @EnableWebSecurity
 class WebSecurityConfig: WebSecurityConfigurerAdapter() {
@@ -53,5 +52,6 @@ class UserSecurity{
 
         return current == id
     }
+
 }
 

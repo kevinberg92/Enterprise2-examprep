@@ -10,7 +10,7 @@ import springfox.documentation.spi.DocumentationType
 import springfox.documentation.spring.web.plugins.Docket
 
 
-@SpringBootApplication(scanBasePackages = ["org.tsdes.advanced"])
+@SpringBootApplication
 class Application {
 
     @Bean
